@@ -12,13 +12,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailActivity : AppCompatActivity() {
 
-    companion object {
-        private val TAB_TITLES = intArrayOf(
-            R.string.tab_title_1,
-            R.string.tab_title_2
-        )
-    }
-
     private lateinit var activityDetailBinding: ActivityDetailBinding
     private val detailViewModel by viewModels<DetailViewModel>()
 
@@ -30,11 +23,8 @@ class DetailActivity : AppCompatActivity() {
         onBackIconPressed()
 
         detailViewModel.isLoading.observe(this) { isLoading ->
-            if (isLoading) {
-                activityDetailBinding.detailProgressBar?.visibility  = View.VISIBLE
-            } else {
-                activityDetailBinding.detailProgressBar?.visibility = View.GONE
-            }
+            activityDetailBinding.detailProgressBar.visibility  =
+                if (isLoading) View.VISIBLE else View.GONE
         }
 
         val username = intent.getStringExtra("username")
@@ -91,8 +81,15 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun onBackIconPressed() {
-        activityDetailBinding.appBar?.setNavigationOnClickListener {
+        activityDetailBinding.appBar.setNavigationOnClickListener {
             this.finish()
         }
+    }
+
+    companion object {
+        private val TAB_TITLES = intArrayOf(
+            R.string.tab_title_1,
+            R.string.tab_title_2
+        )
     }
 }

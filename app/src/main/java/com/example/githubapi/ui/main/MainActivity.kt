@@ -58,11 +58,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLoadingIcon(isLoading: Boolean) {
-        if (isLoading) {
-            activityMainBinding.progressBar.visibility = View.VISIBLE
-        } else {
-            activityMainBinding.progressBar.visibility = View.GONE
-        }
+        activityMainBinding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun showUserList(userList: List<User>?) {

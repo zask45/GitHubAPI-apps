@@ -26,5 +26,4 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible"
         android:visibility="gone" />
-
 </FrameLayout>
