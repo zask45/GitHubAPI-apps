@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.detail.TabLayoutFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tab_layout_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/tv_tab_layout_message"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        tools:text="test"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto_regular"
+        app:layout_constraintTop_toTopOf="@id/tab_layout_recycler_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible"
+        android:visibility="gone" />
+
+</FrameLayout>

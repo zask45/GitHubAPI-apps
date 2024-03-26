@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">GitHubAPI</string>
+    <string name="cari">Cari</string>
+    <string name="app_bar_title">GitHub Profile</string>
+    <string name="tab_title_1">Followers</string>
+    <string name="tab_title_2">Following</string>
+    <string name="user_not_found">User tidak ditemukan</string>
+    <string name="following_not_found">Belum mengikuti siapapun</string>
+    <string name="followers_not_found">Belum ada followers</string>
+</resources>
