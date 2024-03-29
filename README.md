@@ -1,9 +1,10 @@
 # GitHub API
-An Android app that retrieves data from GitHub API then displays a list of users on the page. The app also uses Room Database to store Favorite User data when the Floating Action Button is clicked and DataStore to save the Theme Setting Preferences.
+An Android app that retrieves data with Retrofit Library from GitHub API then displays a list of users on the page. The app also uses Room Database to store Favorite User data when the Floating Action Button is clicked and DataStore to save the Theme Setting Preferences.
 
 ## App Features
 - Search bar to find Users
 - Favorite Button to add Users into Favorite Users Page
+- Show Followers and Followings List into Detail Page
 - Dark Mode and Day Mode Settings
 
 ## App Architecture
