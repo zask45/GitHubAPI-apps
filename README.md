@@ -1,5 +1,5 @@
 # GitHub API
-An Android app that retrieves data from the GitHub API then displays a list of users on the page. The app also uses a Room Database to store Favorite User data when the Floating Action Button is clicked.
+An Android app that retrieves data from the GitHub API then displays a list of users on the page. The app also uses Room Database to store Favorite User data when the Floating Action Button is clicked and DataStore to save the Theme Setting Preferences.
 
 ## App Features
 - Search bar to find Users
