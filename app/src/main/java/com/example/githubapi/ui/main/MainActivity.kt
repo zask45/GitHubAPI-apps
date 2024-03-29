@@ -43,11 +43,13 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                     true
                 }
+
                 R.id.menu_setting -> {
                     val intent = Intent(this, SettingsActivity::class.java)
                     startActivity(intent)
                     true
                 }
+
                 else -> false
             }
         }
@@ -81,7 +83,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun implementSettingTheme() {
         val preferences = SettingPreferences.getInstance(application.dataStore)
-        val settingsViewModel = ViewModelProvider(this, SettingsViewModelFactory(preferences))[SettingsViewModel::class.java]
+        val settingsViewModel = ViewModelProvider(
+            this,
+            SettingsViewModelFactory(preferences)
+        )[SettingsViewModel::class.java]
 
         settingsViewModel.getTheme().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {

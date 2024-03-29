@@ -10,7 +10,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
-class SettingPreferences private constructor(private val dataStore: DataStore<Preferences>){
+
+class SettingPreferences private constructor(private val dataStore: DataStore<Preferences>) {
 
     private val THEME_KEY = booleanPreferencesKey("theme_setting")
 
@@ -25,6 +26,7 @@ class SettingPreferences private constructor(private val dataStore: DataStore<Pr
             setting[THEME_KEY] = isDarkModeActive
         }
     }
+
     companion object {
         @Volatile
         private var INSTANCE: SettingPreferences? = null

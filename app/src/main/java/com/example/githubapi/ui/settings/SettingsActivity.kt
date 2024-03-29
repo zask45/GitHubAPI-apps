@@ -18,7 +18,10 @@ class SettingsActivity : AppCompatActivity() {
         val switchTheme = activitySettingBinding.switchDarkMode
 
         val preferences = SettingPreferences.getInstance(application.dataStore)
-        val settingsViewModel = ViewModelProvider(this, SettingsViewModelFactory(preferences))[SettingsViewModel::class.java]
+        val settingsViewModel = ViewModelProvider(
+            this,
+            SettingsViewModelFactory(preferences)
+        )[SettingsViewModel::class.java]
 
         settingsViewModel.getTheme().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {

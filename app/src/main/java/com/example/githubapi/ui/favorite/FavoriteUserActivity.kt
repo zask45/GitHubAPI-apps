@@ -33,7 +33,7 @@ class FavoriteUserActivity : AppCompatActivity() {
         onBackIconPressed()
 
         favoriteUserViewModel.getAllFavoriteUser()?.observe(this) { favoriteUserList ->
-            if (favoriteUserList.isNullOrEmpty() ) {
+            if (favoriteUserList.isNullOrEmpty()) {
                 activityFavoriteUserBinding.recyclerView.visibility = View.GONE
                 activityFavoriteUserBinding.tvMessage.visibility = View.VISIBLE
             } else {

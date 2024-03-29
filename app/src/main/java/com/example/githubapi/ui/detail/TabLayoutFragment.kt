@@ -68,7 +68,8 @@ class TabLayoutFragment : Fragment() {
         val rvAdapter = TabLayoutAdapter()
         rvAdapter.submitList(list)
         fragmentTabLayoutBinding.tabLayoutRecyclerView.adapter = rvAdapter
-        fragmentTabLayoutBinding.tabLayoutRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
+        fragmentTabLayoutBinding.tabLayoutRecyclerView.layoutManager =
+            LinearLayoutManager(requireActivity())
     }
 
 }

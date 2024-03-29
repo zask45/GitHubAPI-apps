@@ -156,7 +156,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.24"
-            tools:visibility="gone" />
+            tools:visibility="visible"
+            android:indeterminate="true"
+            android:indeterminateTintMode="src_atop"
+            android:indeterminateTint="?attr/colorAccent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

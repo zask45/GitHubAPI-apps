@@ -12,7 +12,8 @@ import com.example.githubapi.databinding.ItemRowUserBinding
 
 class TabLayoutAdapter : ListAdapter<User, TabLayoutAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
-    class MyViewHolder(private val binding: ItemRowUserBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(private val binding: ItemRowUserBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User) {
             binding.tvUsername.text = user.login
             binding.tvId.text = buildString {
@@ -42,7 +43,7 @@ class TabLayoutAdapter : ListAdapter<User, TabLayoutAdapter.MyViewHolder>(DIFF_C
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<User>() {
             override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
-               return oldItem == newItem
+                return oldItem == newItem
             }
 
             override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {

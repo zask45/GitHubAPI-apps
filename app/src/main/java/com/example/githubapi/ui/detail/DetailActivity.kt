@@ -1,6 +1,5 @@
 package com.example.githubapi.ui.detail
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -17,7 +16,6 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var activityDetailBinding: ActivityDetailBinding
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityDetailBinding = ActivityDetailBinding.inflate(layoutInflater)
@@ -28,7 +26,7 @@ class DetailActivity : AppCompatActivity() {
         val detailViewModel = obtainViewModel(this)
 
         detailViewModel.isLoading.observe(this) { isLoading ->
-            activityDetailBinding.detailProgressBar.visibility  =
+            activityDetailBinding.detailProgressBar.visibility =
                 if (isLoading) View.VISIBLE else View.GONE
         }
 

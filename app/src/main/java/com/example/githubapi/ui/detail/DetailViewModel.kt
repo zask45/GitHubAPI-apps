@@ -46,7 +46,8 @@ class DetailViewModel(application: Application) : ViewModel() {
     private val _listFollowing = MutableLiveData<List<User>>()
     val listFollowing: LiveData<List<User>> = _listFollowing
 
-    private val mFavoriteUserRepository: FavoriteUserRepository = FavoriteUserRepository(application)
+    private val mFavoriteUserRepository: FavoriteUserRepository =
+        FavoriteUserRepository(application)
 
     fun getUserData(username: String) {
         _isLoading.value = true
@@ -143,9 +144,11 @@ class DetailViewModel(application: Application) : ViewModel() {
         mFavoriteUserRepository.delete(favoriteUser)
     }
 
-   fun isFavorite(username: String): LiveData<Boolean> = mFavoriteUserRepository.isFavorite(username)
+    fun isFavorite(username: String): LiveData<Boolean> =
+        mFavoriteUserRepository.isFavorite(username)
 
-    fun setFavoriteUser(favoriteUser: FavoriteUserEntity, favoriteState: Boolean) = mFavoriteUserRepository.setFavoriteUser(favoriteUser, favoriteState)
+    fun setFavoriteUser(favoriteUser: FavoriteUserEntity, favoriteState: Boolean) =
+        mFavoriteUserRepository.setFavoriteUser(favoriteUser, favoriteState)
 
 
     companion object {
