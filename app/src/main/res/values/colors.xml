@@ -3,9 +3,11 @@
     <color name="light_gray">#FFececec</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white_2">#f5f5f5</color>
+    <color name="white_3">#E0E0E0</color>
     <color name="black_15_percent">#27000000</color>
-    <color name="black_2">#ff888888</color>
-    <color name="black_3">#ff555555</color>
+    <color name="black_2">#ff555555</color>
+    <color name="black_3">#ff888888</color>
     <color name="blue">#ff007CEF</color>
     <color name="light_blue">#14007CEF</color>
 </resources>

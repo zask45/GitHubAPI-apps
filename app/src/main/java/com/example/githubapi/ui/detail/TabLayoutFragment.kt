@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubapi.R
-import com.example.githubapi.data.response.User
+import com.example.githubapi.data.remote.response.User
 import com.example.githubapi.databinding.FragmentTabLayoutBinding
 
 class TabLayoutFragment : Fragment() {
@@ -42,8 +42,8 @@ class TabLayoutFragment : Fragment() {
                 if (listFollowers.isNullOrEmpty()) {
                     val message = getString(R.string.followers_not_found)
                     fragmentTabLayoutBinding.tabLayoutRecyclerView.visibility = View.GONE
-                    fragmentTabLayoutBinding.tvTabLayoutMessage?.visibility = View.VISIBLE
-                    fragmentTabLayoutBinding.tvTabLayoutMessage?.text = message
+                    fragmentTabLayoutBinding.tvTabLayoutMessage.visibility = View.VISIBLE
+                    fragmentTabLayoutBinding.tvTabLayoutMessage.text = message
                 } else {
                     showTabLayoutRecyclerView(listFollowers)
                 }
@@ -54,8 +54,8 @@ class TabLayoutFragment : Fragment() {
                 if (listFollowing.isNullOrEmpty()) {
                     val message = getString(R.string.following_not_found)
                     fragmentTabLayoutBinding.tabLayoutRecyclerView.visibility = View.GONE
-                    fragmentTabLayoutBinding.tvTabLayoutMessage?.visibility = View.VISIBLE
-                    fragmentTabLayoutBinding.tvTabLayoutMessage?.text = message
+                    fragmentTabLayoutBinding.tvTabLayoutMessage.visibility = View.VISIBLE
+                    fragmentTabLayoutBinding.tvTabLayoutMessage.text = message
                 } else {
                     showTabLayoutRecyclerView(listFollowing)
                 }

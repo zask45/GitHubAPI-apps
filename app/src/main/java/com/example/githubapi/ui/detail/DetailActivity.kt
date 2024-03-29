@@ -1,26 +1,31 @@
 package com.example.githubapi.ui.detail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.githubapi.R
 import com.example.githubapi.databinding.ActivityDetailBinding
+import com.example.githubapi.helper.ViewModelFactory
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var activityDetailBinding: ActivityDetailBinding
-    private val detailViewModel by viewModels<DetailViewModel>()
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityDetailBinding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(activityDetailBinding.root)
 
         onBackIconPressed()
+
+        val detailViewModel = obtainViewModel(this)
 
         detailViewModel.isLoading.observe(this) { isLoading ->
             activityDetailBinding.detailProgressBar.visibility  =
@@ -29,12 +34,38 @@ class DetailActivity : AppCompatActivity() {
 
         val username = intent.getStringExtra("username")
         detailViewModel.getUserData(username!!)
-        showUserData(username)
-    }
 
-    private fun showUserData(username: String) {
+        detailViewModel.isFavorite(username).observe(this) { isFavorite ->
+            if (isFavorite) {
+                activityDetailBinding.fabAdd.setImageResource(R.drawable.fab_baseline_favorite_filled)
+            } else {
+                activityDetailBinding.fabAdd.setImageResource(R.drawable.fab_baseline_favorite_border)
 
-        detailViewModel.avatarId.observe(this) {avatarImage ->
+            }
+        }
+
+        detailViewModel.user.observe(this) { user ->
+
+            activityDetailBinding.fabAdd.setOnClickListener {
+
+                try {
+                    if (user.isFavorite) {
+                        detailViewModel.delete(user)
+                        detailViewModel.setFavoriteUser(user, false)
+                    } else {
+                        detailViewModel.insert(user)
+                        detailViewModel.setFavoriteUser(user, true)
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(this, "Exception: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
+        }
+
+
+        detailViewModel.avatarId.observe(this) { avatarImage ->
             Glide.with(activityDetailBinding.root)
                 .load(avatarImage)
                 .into(activityDetailBinding.ivDetailProfile)
@@ -65,6 +96,13 @@ class DetailActivity : AppCompatActivity() {
 
         inflateTabLayout(username)
 
+
+    }
+
+    private fun obtainViewModel(activity: AppCompatActivity): DetailViewModel {
+        val factory = ViewModelFactory.getInstance(activity.application)
+
+        return ViewModelProvider(activity, factory)[DetailViewModel::class.java]
     }
 
     private fun inflateTabLayout(username: String) {

@@ -7,4 +7,11 @@
     <string name="user_not_found">User tidak ditemukan</string>
     <string name="following_not_found">Belum mengikuti siapapun</string>
     <string name="followers_not_found">Belum ada followers</string>
+    <string name="menu_1">favorite</string>
+    <string name="menu_2">setting</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="favorite_user">Favorite User</string>
+    <string name="add_to_favorite">Add to Favorite</string>
+    <string name="settings">Theme Settings</string>
+    <string name="user_favorite_not_found">Belum ada user favorite</string>
 </resources>

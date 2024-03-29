@@ -1,12 +1,23 @@
 package com.example.githubapi.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubapi.data.response.User
+import com.example.githubapi.R
+import com.example.githubapi.data.remote.response.User
 import com.example.githubapi.databinding.ActivityMainBinding
+import com.example.githubapi.ui.adapter.UserAdapter
+import com.example.githubapi.ui.favorite.FavoriteUserActivity
+import com.example.githubapi.ui.settings.SettingPreferences
+import com.example.githubapi.ui.settings.SettingsActivity
+import com.example.githubapi.ui.settings.SettingsViewModel
+import com.example.githubapi.ui.settings.SettingsViewModelFactory
+import com.example.githubapi.ui.settings.dataStore
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,10 +26,32 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
         showListItem()
+
+        implementSettingTheme()
+
+        activityMainBinding.searchBar.inflateMenu(R.menu.menu_options)
+
+        activityMainBinding.searchBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.menu_favorite -> {
+                    val intent = Intent(this, FavoriteUserActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.menu_setting -> {
+                    val intent = Intent(this, SettingsActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
+
 
         with(activityMainBinding) {
 
@@ -46,12 +79,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun implementSettingTheme() {
+        val preferences = SettingPreferences.getInstance(application.dataStore)
+        val settingsViewModel = ViewModelProvider(this, SettingsViewModelFactory(preferences))[SettingsViewModel::class.java]
+
+        settingsViewModel.getTheme().observe(this) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+    }
+
     private fun showListItem() {
-        mainViewModel.userList.observe(this) {userList ->
+        mainViewModel.userList.observe(this) { userList ->
             showUserList(userList)
         }
 
-        mainViewModel.isLoading.observe(this) {isLoading ->
+        mainViewModel.isLoading.observe(this) { isLoading ->
             showLoadingIcon(isLoading)
         }
 

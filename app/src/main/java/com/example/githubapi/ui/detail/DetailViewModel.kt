@@ -1,17 +1,20 @@
 package com.example.githubapi.ui.detail
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.githubapi.data.response.User
-import com.example.githubapi.data.response.UserDetailResponse
-import com.example.githubapi.data.retrofit.ApiConfig
+import com.example.githubapi.data.local.entity.FavoriteUserEntity
+import com.example.githubapi.data.remote.response.User
+import com.example.githubapi.data.remote.response.UserDetailResponse
+import com.example.githubapi.data.remote.retrofit.ApiConfig
+import com.example.githubapi.repository.FavoriteUserRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailViewModel : ViewModel() {
+class DetailViewModel(application: Application) : ViewModel() {
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -25,17 +28,25 @@ class DetailViewModel : ViewModel() {
     private val _username = MutableLiveData<String>()
     val username: LiveData<String> = _username
 
+    private val _id = MutableLiveData<Int>()
+    val id: LiveData<Int> = _id
+
     private val _followers = MutableLiveData<Int>()
     val followers: LiveData<Int> = _followers
 
     private val _following = MutableLiveData<Int>()
     val following: LiveData<Int> = _following
 
+    private val _user = MutableLiveData<FavoriteUserEntity>()
+    val user: LiveData<FavoriteUserEntity> = _user
+
     private val _listFollowers = MutableLiveData<List<User>>()
     val listFollowers: LiveData<List<User>> = _listFollowers
 
     private val _listFollowing = MutableLiveData<List<User>>()
     val listFollowing: LiveData<List<User>> = _listFollowing
+
+    private val mFavoriteUserRepository: FavoriteUserRepository = FavoriteUserRepository(application)
 
     fun getUserData(username: String) {
         _isLoading.value = true
@@ -53,8 +64,17 @@ class DetailViewModel : ViewModel() {
                     _avatarId.value = response.body()?.avatarUrl
                     _username.value = response.body()?.login
                     _name.value = response.body()?.name
+                    _id.value = response.body()?.id
                     _followers.value = response.body()?.followers
                     _following.value = response.body()?.following
+
+                    _user.value = FavoriteUserEntity(
+                        username,
+                        avatarId.value!!,
+                        id.value!!,
+                        isFavorite(username).value ?: false
+                    )
+
                 } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
@@ -114,6 +134,19 @@ class DetailViewModel : ViewModel() {
             }
         })
     }
+
+    fun insert(favoriteUser: FavoriteUserEntity) {
+        mFavoriteUserRepository.insert(favoriteUser)
+    }
+
+    fun delete(favoriteUser: FavoriteUserEntity) {
+        mFavoriteUserRepository.delete(favoriteUser)
+    }
+
+   fun isFavorite(username: String): LiveData<Boolean> = mFavoriteUserRepository.isFavorite(username)
+
+    fun setFavoriteUser(favoriteUser: FavoriteUserEntity, favoriteState: Boolean) = mFavoriteUserRepository.setFavoriteUser(favoriteUser, favoriteState)
+
 
     companion object {
         private const val TAG = "DetailViewModel"

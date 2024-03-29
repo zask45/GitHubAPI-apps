@@ -1,8 +1,8 @@
-package com.example.githubapi.data.retrofit
+package com.example.githubapi.data.remote.retrofit
 
-import com.example.githubapi.data.response.GitHubResponse
-import com.example.githubapi.data.response.User
-import com.example.githubapi.data.response.UserDetailResponse
+import com.example.githubapi.data.remote.response.GitHubResponse
+import com.example.githubapi.data.remote.response.User
+import com.example.githubapi.data.remote.response.UserDetailResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

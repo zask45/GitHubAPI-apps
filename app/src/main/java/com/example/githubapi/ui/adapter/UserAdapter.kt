@@ -1,4 +1,4 @@
-package com.example.githubapi.ui.main
+package com.example.githubapi.ui.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.githubapi.data.response.User
+import com.example.githubapi.data.remote.response.User
 import com.example.githubapi.databinding.ItemRowUserBinding
 import com.example.githubapi.ui.detail.DetailActivity
 
