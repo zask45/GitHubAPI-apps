@@ -12,7 +12,7 @@ An Android app that retrieves data with Retrofit Library from GitHub API then di
 - Compile SDK: 34
 - Tested with: AVD Pixel 5 API 31
 
-## Demo
+## Demo Images
 ### Day Mode
 <img src="https://github.com/zask45/GitHubAPI/assets/117462539/dd63aa5a-cc86-4636-8f47-cb07a5ffed31" width="25%" >
 <img src="https://github.com/zask45/GitHubAPI/assets/117462539/ba0bac67-9977-4513-90cd-51d8d1bc4dcf" width="25%" ><br>
