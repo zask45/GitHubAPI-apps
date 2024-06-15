@@ -1,6 +1,9 @@
 # GitHub API
 An Android app that retrieves data with Retrofit Library from GitHub API then displays a list of users on the page. The app also uses Room Database to store Favorite User data when the Floating Action Button is clicked and DataStore to save the Theme Setting Preferences.
 
+> :warning: **Before running the project in Android Studio**, first insert your GitHub API token into the module version of build.gradle. The procedure can be seen at [this link (bahasa Indonesia)](https://www.dicoding.com/blog/apa-itu-rate-limit-pada-github-api/). If this step is not done, the application will not run. 
+ 
+
 ## App Features
 - Search bar to find Users
 - Favorite Button to add Users into Favorite Users Page
